@@ -1,0 +1,30 @@
+import json
+import requests
+
+def post_request(url, data, headers=None):
+    """
+    发送 POST 请求到指定的 URL。
+
+    参数:
+    url (str): 目标 URL。
+    data (dict): 要发送的数据。
+    headers (dict, 可选): 请求头。
+
+    返回:
+    dict: 响应数据。
+    """
+    response = requests.post(url, data=json.dumps(data), headers=headers)
+    return response.json()
+
+# 示例用法
+url = "https://api.example.com/post"
+data = {
+    "key1": "value1",
+    "key2": "value2"
+}
+headers = {
+    "Content-Type": "application/json"
+}
+
+response_data = post_request(url, data, headers)
+print(response_data)
